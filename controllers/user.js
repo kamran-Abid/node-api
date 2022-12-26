@@ -1,19 +1,34 @@
-let users = [];
+import fs from 'fs';
+
+var users = JSON.parse(fs.readFileSync('./users.json', 'utf-8'));
+
+// var users = {
+//     firstName: "M",
+//     lastName: "Saqib",
+//     age: 30
+// }
+
+
 export const getUsers = (req, res)=>{
     res.send(users);
 }
-export const addUser = (req, res)=>{
+export const addUser = async (req, res)=>{
     const user = req.body;
     // users.push({...user, id: uuidv4()})
+    // users.push({firstName: "Asif", lastName: "Ali", Age: 11});
     let d = new Date();
     users.push({id: Date.now().toString(), ...user, dateTime: d})
     res.send(`User ${user.firstName} ${user.lastName} is added`);
     console.log("POST request is send");
+    await fs.writeFile('./users.json',JSON.stringify(users, null, 2), err=>{
+        if(err){
+            console.log(err);
+        }
+    });
 } 
 export const findUser = (req, res)=>{
     const {id} = req.params;
     const findUser = users.find(user => user.id === id );
-    console.log();
     res.send((findUser === undefined) ? `id ${id} not found` : findUser );
     console.log((findUser === undefined) ? `id ${id} not found` : findUser);
 }
