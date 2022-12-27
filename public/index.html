@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add user</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        .main_div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: aliceblue;
+            min-height: 100vh;
+        }
+    
+        .card_div {
+            background: #fefefe;
+            padding: 50px;
+        }
+    
+        .heading {
+            color: blueviolet;
+            text-align: center;
+            text-transform: capitalize;
+            margin: 20px 0;
+            font-size: 4rem;
+        }
+    
+        input {
+            margin: 10px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            border: 1px solid #bebebe;
+        }
+        label{
+            width: 30%;
+        }
+    
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    
+        
+        .submit_btn_div{
+            display: flex;
+        }
+        input[type=submit] {
+            width: 100%;
+            font-size: 2rem;
+            margin: 30px auto;
+            background: blueviolet;
+            color: white;
+            border: none;
+            transition: .5s ease-in-out;
+        }
+        input[type=submit]:hover{
+            color: blueviolet;
+            border: 1px solid blueviolet;
+            background-color: #f3e6ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="main_div">
+        <div class="card_div">
+            <h1 class="heading">Add new user</h1>
+            <form method="POST" action="/users">
+                <label>First Name</label>
+                <input type="text" name="firstName" placeholder="Enter your firstname ... " required /><br />
+                <label>Last Name</label>
+                <input type="text" name="lastName" placeholder="Enter your lastname ... " required /><br />
+                <label>Age</label>
+                <input type="number" name="Age" placeholder="Enter your age ... " required /><br />
+                <div class="submit_btn_div">
+                    <input type="submit" value="Submit" />
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

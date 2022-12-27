@@ -8,6 +8,9 @@ var users = JSON.parse(fs.readFileSync('./users.json', 'utf-8'));
 //     age: 30
 // }
 
+function timeFunc(){
+    res.send("go back");
+}
 
 export const getUsers = (req, res)=>{
     res.send(users);
@@ -18,13 +21,15 @@ export const addUser = async (req, res)=>{
     // users.push({firstName: "Asif", lastName: "Ali", Age: 11});
     let d = new Date();
     users.push({id: Date.now().toString(), ...user, dateTime: d})
-    res.send(`User ${user.firstName} ${user.lastName} is added`);
+    // res.send(`User ${user.firstName} ${user.lastName} is added <br/><a href='/'>Go back</a>`); // <br/><a href='/'>Go back</a>
+    // setTimeout(timeFunc,3000);
     console.log("POST request is send");
     await fs.writeFile('./users.json',JSON.stringify(users, null, 2), err=>{
         if(err){
             console.log(err);
         }
     });
+    res.render(`index.ejs`);
 } 
 export const findUser = (req, res)=>{
     const {id} = req.params;
